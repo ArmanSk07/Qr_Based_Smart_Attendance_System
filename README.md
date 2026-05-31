@@ -1,75 +1,60 @@
---- FRONTEND INSTALLATION COMMAND ---
+Local Setup & Deployment Guide: QR Attendance System
+This document outlines the step-by-step process for configuring and executing the QR Attendance System in a local development environment.
 
-To install all required libraries for this React project on a new computer, 
-open a terminal in the main project folder and run:
+System Prerequisites
+Ensure the following core technologies are installed on your machine before proceeding:
 
-npm install react-router-dom recharts react-qr-code lucide-react
+Node.js: Download & Install Node.js
 
-(Note: Running 'npm install' by itself will also automatically read the 
-package.json file and install everything needed.)
+Python: Download & Install Python
 
+Phase 1: Backend Configuration (Django Database)
+Open the root project directory in your code editor (e.g., VS Code).
 
-===============================================================
-   QR ATTENDANCE SYSTEM - SETUP & RUN GUIDE
-===============================================================
+Launch a new terminal instance and navigate to the backend directory.
 
-PREREQUISITES:
-1. Install Node.js (https://nodejs.org/)
-2. Install Python (https://www.python.org/)
+Install the required Python dependencies.
 
----------------------------------------------------------------
-STEP 1: SETUP BACKEND (DATABASE)
----------------------------------------------------------------
-1. Open the project folder in VS Code.
-2. Open a Terminal.
-3. Navigate to the backend folder:
-   cd backend
+Initialize the database schemas.
 
-4. Install the Python dependencies:
-   pip install -r requirements.txt
+Create an administrative user for system access.
 
-5. Initialize the Database:
-   python manage.py migrate
+Boot the backend server on port 8080.
 
-6. Create an Admin User (to login):
-   python manage.py createsuperuser
-   (Enter Username: admin, Password: 1234)
+Execution Commands:
 
-7. Start the Backend Server:
-   python manage.py runserver 8080
+Bash
+cd backend
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver 8080
+Important: Keep this terminal instance active. The backend server must remain running continuously to process API requests.
 
-   > Keep this terminal OPEN. It must stay running.
+Phase 2: Frontend Configuration (React Interface)
+Open a secondary terminal instance and ensure you are in the root project directory (run cd .. if you are still in the backend folder).
 
----------------------------------------------------------------
-STEP 2: SETUP FRONTEND (WEBSITE)
----------------------------------------------------------------
-1. Open a SECOND Terminal (Do not close the first one).
-2. Navigate to the main project folder (if you are in backend, type: cd ..)
+Install the necessary Node modules.
 
-3. Install Node Modules:
-   npm install
+Create an environment variables file. Create a new file named .env in the root folder and add the following line: VITE_API_URL=[http://127.0.0.1:8080/api](http://127.0.0.1:8080/api)
 
-4. Create the Environment File:
-   - Create a new file named ".env" in the main folder.
-   - Paste this line inside it:
-     VITE_API_URL=http://127.0.0.1:8080/api
+Initialize the frontend development server.
 
-5. Start the Website:
-   npm run dev
+Execution Commands:
 
----------------------------------------------------------------
-STEP 3: LOGIN
----------------------------------------------------------------
-1. Open your browser and go to the link shown in Terminal 2 
-   (Usually: http://localhost:5173)
+Bash
+npm install
+npm run dev
+Dependency Note: Running npm install automatically provisions all packages listed in your package.json. If you are setting up this project from scratch on a new machine without a package lock, you can manually install the core UI libraries using: npm install react-router-dom recharts react-qr-code lucide-react.
 
-2. Login with the credentials you created in Step 1.
-   (Default: admin / 1234)
+Phase 3: System Access
+Launch your web browser and navigate to the local development URL displayed in your secondary terminal (typically http://localhost:5173).
 
----------------------------------------------------------------
-TROUBLESHOOTING
----------------------------------------------------------------
-- If you see "Network Error": Check if Terminal 1 (Python) is running.
-- If images don't load: Ensure the 'backend/media' folder exists.
-- If mobile scanning fails: Ensure both devices are on the same WiFi 
-  and run the frontend with: npm run dev -- --host
+Authenticate using the admin credentials established during Phase 1.
+
+Troubleshooting & Common Issues
+Network or Connection Errors: Verify that your primary terminal running the Python backend is still active and has not crashed.
+
+Broken Images or Upload Failures: Confirm that the backend/media directory exists. If it does not, create the folder manually.
+
+Mobile Scanning Failures: Ensure the host machine and the mobile scanner are connected to the exact same Wi-Fi network. You must also expose your frontend to the local network by starting it with the host flag: npm run dev -- --host.
