@@ -1,0 +1,66 @@
+<----------------------------------------IN_BACKEND_FILES---------------------------------------->
+
+INSIDE <---------(settings.py)----------> (Line 32) Change it to allow your PythonAnywhere domain.
+
+
+(1)
+
+//before hosting change this Line
+FROM = ALLOWED_HOSTS = ['*']
+
+
+<--------------TO------------>
+
+
+ALLOWED_HOSTS=['your-username.pythonanywhere.com', 'localhost', '127.0.0.1']
+
+(2)
+
+//before hosting change this Line 122 and 123 
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = []
+
+
+<--------------TO------------>
+
+
+CORS_ALLOW_ALL_ORIGINS = False 
+
+CORS_ALLOWED_ORIGINS = [
+    "https://skqrattendance.netlify.app",       # Your Live Netlify Site
+    "http://localhost:5173",                    # Your Laptop (Local Testing)
+    "http://127.0.0.1:5173",                    # Alternate Localhost
+]
+
+    //write this extra function
+CSRF_TRUSTED_ORIGINS = [
+    //  #Adding this list tells Django: "It's okay, skqrattendance.netlify.app is my website. Trust it."
+    "https://skqrattendance.netlify.app",
+
+    "https://your-username.pythonanywhere.com"  # Replace 'your-username'
+]
+
+
+
+
+
+
+
+<----------------------------------------IN_FRONTEND_FILES---------------------------------------->
+
+
+(1)
+
+INSIDE <---------(AppContext.jsx)----------> (Line 07) Change it to allow your PythonAnywhere domain.
+
+CHANGE : export const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8080/api";
+
+
+<--------------TO------------>
+
+// Replace 'your-username' with your actual PythonAnywhere username
+export const API_URL = "https://your-username.pythonanywhere.com/api";
+
+
+

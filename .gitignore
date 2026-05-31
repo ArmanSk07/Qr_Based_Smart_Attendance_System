@@ -1,0 +1,60 @@
+# =========================
+# 1. ENVIRONMENT VARIABLES (CRITICAL)
+# =========================
+.env
+.env.*
+*.local
+
+# =========================
+# 2. BACKEND (PYTHON / DJANGO)
+# =========================
+backend/venv/
+backend/env/
+backend/__pycache__/
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
+
+# Databases & Media
+backend/db.sqlite3
+*.sqlite3
+*.sqlite3-journal
+backend/media/
+media/
+
+# =========================
+# 3. FRONTEND (NODE / REACT / VITE)
+# =========================
+node_modules/
+dist/
+dist-ssr/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =========================
+# 4. OS & EDITOR FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# VS Code (Keeping your smart rule to save extensions config)
+.vscode/*
+!.vscode/extensions.json
+
+# Other Editors
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.swo
