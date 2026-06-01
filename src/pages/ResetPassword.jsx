@@ -18,7 +18,7 @@ const ResetPassword = () => {
 
         try {
             // 🟢 CHANGED PORT TO 8080
-            const response = await axios.post(`http://127.0.0.1:8080/api/reset-confirm/${uid}/${token}/`, {
+            const response = await axios.post(import.meta.env.VITE_API_URL + '/api/request-reset/', {
                 new_password: newPassword
             });
             alert("Password reset successful! Please login with your new password.");

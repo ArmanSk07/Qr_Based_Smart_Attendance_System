@@ -125,7 +125,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 🔒 SECURITY FIX 3: Use an explicit CORS whitelist instead of allow-all.
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
-_raw_cors = get_env('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173')
+_raw_cors = get_env('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173,https://qrbasedattendancefrontendui.vercel.app')
 CORS_ALLOWED_ORIGINS = [o.strip() for o in _raw_cors.split(',') if o.strip()]
 
 # 🔒 SECURITY FIX 4: Secure cookies in production (when DEBUG=False).

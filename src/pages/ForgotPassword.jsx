@@ -18,8 +18,7 @@ const ForgotPassword = () => {
 
         try {
             // 1. Ask Django to generate the token and link
-            const response = await axios.post('http://127.0.0.1:8080/api/request-reset/', { 
-                identifier: identifier.trim() 
+           const response = await axios.post(import.meta.env.VITE_API_URL + '/api/request-reset/', {
             });
             
             const { reset_link, user_email } = response.data;
